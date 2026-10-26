@@ -1,36 +1,41 @@
 
-# Paradise Nursery - Plant Shopping Application
+# e-plantShopping
 
-## Overview
+## Project Overview
 
-Paradise Nursery is a React-based plant shopping application that allows users to explore plants, add products to a shopping cart, update quantities, remove items, and calculate the total cost.
+e-plantShopping is a React-based online plant shopping application developed as part of the Coursera React and Redux project.
+
+The application allows users to explore different categories of plants, view plant names and prices, add plants to a shopping cart, manage quantities, and calculate the total purchase amount.
 
 ## Features
 
-- Welcome page with a Get Started button.
-- About Us section.
-- Plants organized into categories.
-- Plant names, images, and prices.
-- Add-to-cart functionality using Redux Toolkit.
-- Dynamic cart item count.
-- Increase and decrease product quantities.
-- Remove products from the cart.
-- Automatic subtotal and grand-total calculation.
-- Continue Shopping navigation.
-- Checkout notification.
-- Responsive layout for different screen sizes.
+- Welcome page with the company name Paradise Nursery.
+- Get Started button to open the plant listing.
+- About Us section describing the company and its mission.
+- Three plant categories with six plants in each category.
+- Plant thumbnails, names, and prices.
+- Add to Cart functionality using Redux Toolkit.
+- Shopping cart item count that updates with cart quantities.
+- Increase and decrease item quantities.
+- Remove items from the shopping cart.
+- Automatic item subtotal and cart total calculation.
+- Home, Plants, and Cart navigation.
+- Continue Shopping functionality.
+- Checkout Coming Soon notification.
+- Responsive user interface.
 
 ## Technologies Used
 
 - React
-- Vite
 - JavaScript
 - Redux Toolkit
 - React Redux
+- Vite
+- HTML
 - CSS
 - Git and GitHub
 
-## Installation
+## Project Setup
 
 Clone the repository:
 
@@ -38,13 +43,13 @@ Clone the repository:
 git clone https://github.com/vedantghulaxe/e-plantShopping.git
 ```
 
-Navigate into the project:
+Move into the project directory:
 
 ```bash
 cd e-plantShopping
 ```
 
-Install dependencies:
+Install the dependencies:
 
 ```bash
 npm install
@@ -56,9 +61,9 @@ Start the development server:
 npm run dev
 ```
 
-## Build
+## Production Build
 
-Create a production build:
+To create a production build, run:
 
 ```bash
 npm run build
@@ -66,13 +71,19 @@ npm run build
 
 ## Deployment
 
-Deploy to GitHub Pages:
+The application is configured for GitHub Pages deployment.
+
+To deploy the application, run:
 
 ```bash
 npm run deploy
 ```
 
-## Repository
+## Live Application
+
+https://vedantghulaxe.github.io/e-plantShopping/
+
+## GitHub Repository
 
 https://github.com/vedantghulaxe/e-plantShopping
 
