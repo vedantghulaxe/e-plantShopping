@@ -12,10 +12,6 @@ function App() {
     setCurrentPage('plants');
   };
 
-  const handleHomeClick = () => {
-    setCurrentPage('home');
-  };
-
   const handleNavigate = (page) => {
     setCurrentPage(page);
   };
@@ -28,7 +24,7 @@ function App() {
 
           <div className="content">
             <div className="landing_content">
-              <h1>Welcome To Paradise Nursery</h1>
+              <h1>Welcome to Paradise Nursery</h1>
               <div className="divider"></div>
               <p>Where Green Meets Serenity</p>
 
@@ -54,7 +50,10 @@ function App() {
       )}
 
       {currentPage === 'cart' && (
-        <CartItem onContinueShopping={() => setCurrentPage('plants')} />
+        <CartItem
+          onNavigate={handleNavigate}
+          onContinueShopping={() => setCurrentPage('plants')}
+        />
       )}
     </div>
   );
