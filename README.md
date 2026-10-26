@@ -1,38 +1,81 @@
 
-# e-plantShopping
+# Paradise Nursery - Plant Shopping Application
 
-## Paradise Nursery — Plant Shopping Application
+## Overview
 
-Paradise Nursery is a React-based online plant shop where users can browse plants by category and manage a shopping cart.
+Paradise Nursery is a React-based plant shopping application that allows users to explore plants, add products to a shopping cart, update quantities, remove items, and calculate the total cost.
 
 ## Features
 
-- Landing page with a Get Started button
-- Three plant categories with six plants each
-- Plant images and prices
-- Add-to-cart buttons with added-item status
-- Redux Toolkit state management
-- Increase and decrease item quantities
-- Remove items from the shopping cart
-- Automatic subtotal and total calculations
-- Home, Plants and Cart navigation
-- Responsive product listing
+- Welcome page with a Get Started button.
+- About Us section.
+- Plants organized into categories.
+- Plant names, images, and prices.
+- Add-to-cart functionality using Redux Toolkit.
+- Dynamic cart item count.
+- Increase and decrease product quantities.
+- Remove products from the cart.
+- Automatic subtotal and grand-total calculation.
+- Continue Shopping navigation.
+- Checkout notification.
+- Responsive layout for different screen sizes.
 
 ## Technologies Used
 
 - React
 - Vite
+- JavaScript
 - Redux Toolkit
 - React Redux
 - CSS
-- JavaScript
+- Git and GitHub
 
-## Run Locally
+## Installation
 
-1. Clone this repository.
-2. Install dependencies using `npm install`.
-3. Start the development server using `npm run dev`.
+Clone the repository:
 
-## Project Repository
+```bash
+git clone https://github.com/vedantghulaxe/e-plantShopping.git
+```
+
+Navigate into the project:
+
+```bash
+cd e-plantShopping
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+## Build
+
+Create a production build:
+
+```bash
+npm run build
+```
+
+## Deployment
+
+Deploy to GitHub Pages:
+
+```bash
+npm run deploy
+```
+
+## Repository
 
 https://github.com/vedantghulaxe/e-plantShopping
+
+## Author
+
+Vedant Ghulaxe
