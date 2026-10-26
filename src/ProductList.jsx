@@ -1,110 +1,114 @@
 
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from './CartSlice';
 import './ProductList.css';
 
-const categories = [
+const plantCategories = [
   {
-    name: 'Air Purifying Plants',
+    category: 'Air Purifying Plants',
     plants: [
-      { id: 'snake', name: 'Snake Plant', cost: 15, image: 'https://cdn.pixabay.com/photo/2021/01/22/06/04/snake-plant-5939187_1280.jpg' },
-      { id: 'spider', name: 'Spider Plant', cost: 12, image: 'https://cdn.pixabay.com/photo/2018/07/11/06/47/chlorophytum-3530413_1280.jpg' },
-      { id: 'peace', name: 'Peace Lily', cost: 18, image: 'https://cdn.pixabay.com/photo/2019/06/12/14/14/peace-lilies-4269365_1280.jpg' },
-      { id: 'fern', name: 'Boston Fern', cost: 20, image: 'https://cdn.pixabay.com/photo/2020/04/30/19/52/boston-fern-5114414_1280.jpg' },
-      { id: 'rubber', name: 'Rubber Plant', cost: 17, image: 'https://cdn.pixabay.com/photo/2020/02/15/11/49/flower-4850729_1280.jpg' },
-      { id: 'aloe', name: 'Aloe Vera', cost: 14, image: 'https://cdn.pixabay.com/photo/2018/04/02/07/42/leaf-3283175_1280.jpg' }
+      { id: 1, name: 'Snake Plant', cost: 299, image: 'https://images.unsplash.com/photo-1593691509543-c55fb32e5cee?w=400' },
+      { id: 2, name: 'Peace Lily', cost: 349, image: 'https://images.unsplash.com/photo-1593691509543-c55fb32e5cee?w=400' },
+      { id: 3, name: 'Spider Plant', cost: 249, image: 'https://images.unsplash.com/photo-1572688484438-313a6e50c333?w=400' },
+      { id: 4, name: 'Areca Palm', cost: 399, image: 'https://images.unsplash.com/photo-1597055181300-3e9e3a7a5a40?w=400' },
+      { id: 5, name: 'Boston Fern', cost: 279, image: 'https://images.unsplash.com/photo-1597055181300-3e9e3a7a5a40?w=400' },
+      { id: 6, name: 'Rubber Plant', cost: 449, image: 'https://images.unsplash.com/photo-1509423350716-97f9360b4e09?w=400' }
     ]
   },
   {
-    name: 'Aromatic Fragrant Plants',
+    category: 'Aromatic Plants',
     plants: [
-      { id: 'lavender', name: 'Lavender', cost: 20, image: 'https://cdn.pixabay.com/photo/2018/07/11/06/47/chlorophytum-3530413_1280.jpg' },
-      { id: 'jasmine', name: 'Jasmine', cost: 18, image: 'https://images.unsplash.com/photo-1592729645009-b96d1e63d14b?w=600' },
-      { id: 'rosemary', name: 'Rosemary', cost: 15, image: 'https://cdn.pixabay.com/photo/2019/10/11/07/12/rosemary-4541241_1280.jpg' },
-      { id: 'mint', name: 'Mint', cost: 12, image: 'https://cdn.pixabay.com/photo/2016/01/07/18/16/mint-1126282_1280.jpg' },
-      { id: 'lemon-balm', name: 'Lemon Balm', cost: 14, image: 'https://cdn.pixabay.com/photo/2019/09/16/07/41/balm-4480134_1280.jpg' },
-      { id: 'hyacinth', name: 'Hyacinth', cost: 22, image: 'https://cdn.pixabay.com/photo/2019/04/07/20/20/hyacinth-4110726_1280.jpg' }
+      { id: 7, name: 'Lavender', cost: 299, image: 'https://images.unsplash.com/photo-1499002238440-d264edd596ec?w=400' },
+      { id: 8, name: 'Jasmine', cost: 249, image: 'https://images.unsplash.com/photo-1497250681960-ef046c08a56e?w=400' },
+      { id: 9, name: 'Rosemary', cost: 199, image: 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=400' },
+      { id: 10, name: 'Mint', cost: 149, image: 'https://images.unsplash.com/photo-1618375569909-3c8616cf7733?w=400' },
+      { id: 11, name: 'Basil', cost: 179, image: 'https://images.unsplash.com/photo-1618375569909-3c8616cf7733?w=400' },
+      { id: 12, name: 'Lemon Balm', cost: 199, image: 'https://images.unsplash.com/photo-1618375569909-3c8616cf7733?w=400' }
     ]
   },
   {
-    name: 'Low Maintenance Plants',
+    category: 'Low Maintenance Plants',
     plants: [
-      { id: 'zz', name: 'ZZ Plant', cost: 25, image: 'https://images.unsplash.com/photo-1632207691143-643e2a9a9361?w=600' },
-      { id: 'pothos', name: 'Pothos', cost: 10, image: 'https://cdn.pixabay.com/photo/2018/11/15/10/32/plants-3816945_1280.jpg' },
-      { id: 'cast-iron', name: 'Cast Iron Plant', cost: 20, image: 'https://cdn.pixabay.com/photo/2017/02/16/18/04/cast-iron-plant-2072008_1280.jpg' },
-      { id: 'succulent', name: 'Succulent', cost: 18, image: 'https://cdn.pixabay.com/photo/2016/11/21/16/05/cacti-1846147_1280.jpg' },
-      { id: 'aglaonema', name: 'Aglaonema', cost: 22, image: 'https://cdn.pixabay.com/photo/2014/10/10/04/27/aglaonema-482915_1280.jpg' },
-      { id: 'marigold', name: 'Marigold', cost: 8, image: 'https://cdn.pixabay.com/photo/2022/02/22/05/45/marigold-7028063_1280.jpg' }
+      { id: 13, name: 'Aloe Vera', cost: 199, image: 'https://images.unsplash.com/photo-1509423350716-97f9360b4e09?w=400' },
+      { id: 14, name: 'ZZ Plant', cost: 399, image: 'https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=400' },
+      { id: 15, name: 'Jade Plant', cost: 249, image: 'https://images.unsplash.com/photo-1509423350716-97f9360b4e09?w=400' },
+      { id: 16, name: 'Pothos', cost: 229, image: 'https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=400' },
+      { id: 17, name: 'Lucky Bamboo', cost: 199, image: 'https://images.unsplash.com/photo-1512428813834-c702c7702b78?w=400' },
+      { id: 18, name: 'Succulent Mix', cost: 299, image: 'https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=400' }
     ]
   }
 ];
 
-function ProductList({ onNavigate }) {
+const ProductList = ({ onNavigate }) => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.items);
+  const [addedToCart, setAddedToCart] = useState({});
 
-  const cartCount = cartItems.reduce(
+  const totalItems = cartItems.reduce(
     (total, item) => total + item.quantity,
     0
   );
 
+  const handleAddToCart = (plant) => {
+    dispatch(addItem(plant));
+    setAddedToCart((previous) => ({
+      ...previous,
+      [plant.name]: true
+    }));
+  };
+
+  const handleNavigate = (page) => {
+    if (typeof onNavigate === 'function') {
+      onNavigate(page);
+    }
+  };
+
   return (
-    <div className="plants-page">
-      <header className="navbar">
-        <h2>🌿 Paradise Nursery</h2>
-        <nav>
-          <button onClick={() => onNavigate('home')}>Home</button>
-          <button onClick={() => onNavigate('plants')}>Plants</button>
-          <button onClick={() => onNavigate('cart')}>
-            🛒 Cart ({cartCount})
+    <div className="product-page">
+      <nav className="navbar">
+        <h2 onClick={() => handleNavigate('home')} style={{ cursor: 'pointer' }}>
+          Paradise Nursery
+        </h2>
+
+        <div className="navbar-links">
+          <button onClick={() => handleNavigate('home')}>Home</button>
+          <button onClick={() => handleNavigate('plants')}>Plants</button>
+          <button onClick={() => handleNavigate('cart')}>
+            Cart ({totalItems})
           </button>
-        </nav>
-      </header>
+        </div>
+      </nav>
 
-      <main className="product-grid">
-        <h1>Our Plant Collection</h1>
-        <p>Bring home greenery and create your own peaceful paradise.</p>
+      <main className="product-list">
+        <h1>Our Plants</h1>
+        <p>Bring nature home with our beautiful collection.</p>
 
-        {categories.map((category) => (
-          <section className="plant-category" key={category.name}>
-            <div className="plantname_heading">
-              <h2 className="plant_heading">{category.name}</h2>
-            </div>
+        {plantCategories.map((category) => (
+          <section className="plant-category" key={category.category}>
+            <h2>{category.category}</h2>
 
-            <div className="product-list">
-              {category.plants.map((plant) => {
-                const added = cartItems.some(
-                  (item) => item.id === plant.id
-                );
+            <div className="product-grid">
+              {category.plants.map((plant) => (
+                <article className="plant-card" key={plant.id}>
+                  <img src={plant.image} alt={plant.name} />
+                  <h3>{plant.name}</h3>
+                  <p>Price: ₹{plant.cost.toFixed(2)}</p>
 
-                return (
-                  <article className="product-card" key={plant.id}>
-                    <img
-                      className="product-image"
-                      src={plant.image}
-                      alt={plant.name}
-                      loading="lazy"
-                    />
-                    <h3 className="product-title">{plant.name}</h3>
-                    <p className="product-price">
-                      ₹{plant.cost.toFixed(2)}
-                    </p>
-                    <button
-                      className={`product-button ${added ? 'added-to-cart' : ''}`}
-                      disabled={added}
-                      onClick={() => dispatch(addItem(plant))}
-                    >
-                      {added ? 'Added to Cart' : 'Add to Cart'}
-                    </button>
-                  </article>
-                );
-              })}
+                  <button
+                    onClick={() => handleAddToCart(plant)}
+                    disabled={Boolean(addedToCart[plant.name])}
+                  >
+                    {addedToCart[plant.name] ? 'Added to Cart' : 'Add to Cart'}
+                  </button>
+                </article>
+              ))}
             </div>
           </section>
         ))}
       </main>
     </div>
   );
-}
+};
 
 export default ProductList;
